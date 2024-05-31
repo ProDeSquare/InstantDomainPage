@@ -1,30 +1,57 @@
 const Root = (): JSX.Element => (
   <div id="app-container">
-    <header></header>
-
     <main>
-      <section>
-        <h1>Hello World!</h1>
+      <section className="app-title-container">
+        <div>
+          <h1>Domain For Sale!</h1>
 
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero
-          quaerat enim molestias obcaecati similique, odit adipisci voluptates
-          repudiandae dolorem iusto repellat culpa earum labore. Animi, possimus
-          explicabo. Accusantium, fuga alias.
-        </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
+            tenetur ex magni et libero reprehenderit fuga omnis deserunt nobis
+            inventore neque consectetur molestiae dolores dolorem rerum earum
+            illo, quidem ullam.
+          </p>
+
+          <button onClick={() => window.open("mailto:hamza@prodesquare.com")}>
+            Contact Me
+          </button>
+        </div>
       </section>
 
-      <div>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius
-        laudantium aliquid necessitatibus libero fugiat enim quibusdam
-        exercitationem dicta maiores ipsam? In, nihil veritatis! Unde, nihil
-        porro libero voluptas repellendus accusamus.
-      </div>
-    </main>
+      <section className="app-content-container">
+        <div>
+          <h2>Interested?</h2>
 
-    <footer>
-      Generated with <a href="#">Domain Seller</a>
-    </footer>
+          <p>How about adding your details, I'll be soon in touch with you.</p>
+
+          <form action="#">
+            <div>
+              <label htmlFor="name">Your Name</label>
+
+              <input
+                type="text"
+                placeholder="e.g. John Doe"
+                id="name"
+                required
+              />
+            </div>
+
+            <div>
+              <label htmlFor="email">Your Email</label>
+
+              <input
+                type="email"
+                placeholder="e.g. john@example.com"
+                id="email"
+                required
+              />
+            </div>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </section>
+    </main>
   </div>
 );
 
