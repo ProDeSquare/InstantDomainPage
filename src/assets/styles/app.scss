@@ -46,10 +46,21 @@ section {
   }
 }
 
-.app-title-container {
+.app-title-wrapper {
   background-color: $white;
   color: $primary;
   justify-content: right;
+
+  .app-title-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .app-title {
+      margin-top: -3rem;
+    }
+  }
 }
 
 .app-content-container {
@@ -117,6 +128,14 @@ button {
   }
 }
 
+.mobile-footer-container {
+  display: none;
+}
+
+.footer-container {
+  display: block;
+}
+
 @media (max-width: 570px) {
   main {
     display: block;
@@ -136,7 +155,24 @@ button {
     }
   }
 
+  .app-title-wrapper .app-title-container .app-title {
+    margin-top: 1.25rem;
+  }
+
   form input {
     width: 100%;
+  }
+
+  .mobile-footer-container {
+    display: block;
+    margin-top: 3rem;
+
+    a {
+      color: $secondary;
+    }
+  }
+
+  .footer-container {
+    display: none;
   }
 }
