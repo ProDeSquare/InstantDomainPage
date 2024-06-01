@@ -75,6 +75,13 @@ label {
 form {
   button {
     border: 1px solid $white;
+    background-color: $primary;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      color: $primary;
+    }
   }
 
   input {
