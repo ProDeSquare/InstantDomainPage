@@ -2,7 +2,7 @@ import app from "@/data/app";
 
 const Form = (): JSX.Element => {
   return (
-    <form action="/" method="GET">
+    <form action={app.form_submit_api_url} method="POST">
       <input type="hidden" value={app.domain} name="domain" />
 
       <div>
