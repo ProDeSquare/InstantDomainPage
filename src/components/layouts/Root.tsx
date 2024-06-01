@@ -15,10 +15,12 @@ const Root = (): JSX.Element => (
             <h1>Domain For Sale!</h1>
 
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit
-              tenetur ex magni et libero reprehenderit fuga omnis deserunt nobis
-              inventore neque consectetur molestiae dolores dolorem rerum earum
-              illo, quidem ullam.
+              Discover the potential of <strong>xyx.tld</strong>, now available
+              for sale! This premium domain offers endless possibilities for
+              your online venture. Act quickly to secure this valuable asset and
+              unlock new opportunities. Don't wait, inquire now to make{" "}
+              <strong>xyx.tld</strong> yours and start building your digital
+              empire!
             </p>
 
             <button onClick={() => window.open("mailto:hamza@prodesquare.com")}>
@@ -36,7 +38,10 @@ const Root = (): JSX.Element => (
         <div>
           <h2>Interested?</h2>
 
-          <p>How about adding your details, I'll be soon in touch with you.</p>
+          <p>
+            Make <strong>xyz.tld</strong> yours today. Fill in the form, and
+            we'll reach out to you with more details.
+          </p>
 
           <form action="#">
             <div>
