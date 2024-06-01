@@ -1,10 +1,17 @@
+import app from "@/data/app";
+
 const Form = (): JSX.Element => {
   return (
     <form action="#">
       <div>
         <label htmlFor="name">Your Name</label>
 
-        <input type="text" placeholder="e.g. John Doe" id="name" required />
+        <input
+          type="text"
+          placeholder={`e.g. ${app.seller_name}`}
+          id="name"
+          required
+        />
       </div>
 
       <div>
@@ -12,7 +19,9 @@ const Form = (): JSX.Element => {
 
         <input
           type="email"
-          placeholder="e.g. john@example.com"
+          placeholder={`e.g. ${app.seller_name.split(" ")[0].toLowerCase()}@${
+            app.domain
+          }`}
           id="email"
           required
         />
