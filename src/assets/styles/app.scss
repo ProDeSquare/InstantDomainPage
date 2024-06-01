@@ -40,7 +40,7 @@ section {
 
     p {
       margin-bottom: 1.3rem;
-      line-height: 1.5rem;
+      line-height: 1.65rem;
     }
   }
 }
@@ -68,7 +68,6 @@ section {
 }
 
 label {
-  display: block;
   font-weight: bold;
 }
 
@@ -93,6 +92,7 @@ form {
     margin: 0.3rem 0 1rem 0;
     padding: 0.65rem 1rem;
     border: 2px solid $primary-light;
+    display: block;
 
     &::placeholder {
       color: rgb(255 255 255 / 0.75);
