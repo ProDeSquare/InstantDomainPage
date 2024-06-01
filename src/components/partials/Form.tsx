@@ -2,7 +2,9 @@ import app from "@/data/app";
 
 const Form = (): JSX.Element => {
   return (
-    <form action="#">
+    <form action="/" method="GET">
+      <input type="hidden" value={app.domain} name="domain" />
+
       <div>
         <label htmlFor="name">Your Name</label>
 
@@ -10,6 +12,7 @@ const Form = (): JSX.Element => {
           type="text"
           placeholder={`e.g. ${app.seller_name}`}
           id="name"
+          name="name"
           required
         />
       </div>
@@ -23,6 +26,7 @@ const Form = (): JSX.Element => {
             app.domain
           }`}
           id="email"
+          name="email"
           required
         />
       </div>
