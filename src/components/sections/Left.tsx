@@ -1,3 +1,4 @@
+import app from "@/data/app";
 import Logo from "@/components/partials/Logo";
 import Footer from "@/components/sections/Footer";
 
@@ -10,14 +11,15 @@ const Left = (): JSX.Element => (
         <h1>Domain For Sale!</h1>
 
         <p>
-          Discover the potential of <strong>xyx.tld</strong>, now available for
-          sale! This premium domain offers endless possibilities for your online
-          venture. Act quickly to secure this valuable asset and unlock new
-          opportunities. Don't wait, inquire now to make{" "}
-          <strong>xyx.tld</strong> yours and start building your digital empire!
+          Discover the potential of <strong>{app.domain}</strong>, now available
+          for sale! This premium domain offers endless possibilities for your
+          online venture. Act quickly to secure this valuable asset and unlock
+          new opportunities. Don't wait, inquire now to make{" "}
+          <strong>{app.domain}</strong> yours and start building your digital
+          empire!
         </p>
 
-        <button onClick={() => window.open("mailto:hamza@prodesquare.com")}>
+        <button onClick={() => window.open(`mailto:${app.seller_email}`)}>
           Contact Me
         </button>
       </div>

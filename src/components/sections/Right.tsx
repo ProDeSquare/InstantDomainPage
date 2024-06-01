@@ -1,3 +1,4 @@
+import app from "@/data/app";
 import Form from "@/components/partials/Form";
 import Footer from "@/components/sections/Footer";
 
@@ -7,8 +8,8 @@ const Right = (): JSX.Element => (
       <h2>Interested?</h2>
 
       <p>
-        Make <strong>xyz.tld</strong> yours today. Fill in the form, and we'll
-        reach out to you with more details.
+        Make <strong>{app.domain}</strong> yours today. Fill in the form, and
+        we'll reach out to you with more details.
       </p>
 
       <Form />
