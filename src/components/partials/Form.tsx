@@ -38,6 +38,7 @@ const Form = (): JSX.Element => {
           name="name"
           required
           onChange={handleChange}
+          value={data.name}
         />
       </div>
 
@@ -53,6 +54,7 @@ const Form = (): JSX.Element => {
           name="email"
           required
           onChange={handleChange}
+          value={data.email}
         />
       </div>
 
