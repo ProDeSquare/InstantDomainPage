@@ -2,6 +2,7 @@ $primary: rgb(96 10 255);
 $secondary: rgb(204 243 129);
 $white: rgb(255 255 255);
 $primary-light: rgb(120 118 254);
+$error: rgb(249 207 171);
 
 * {
   margin: 0;
@@ -133,6 +134,26 @@ button {
     background-color: $primary;
     color: $white;
   }
+}
+
+.response {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+
+  &:empty {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.response-success {
+  @extend .response;
+  color: $secondary;
+}
+
+.response-failure {
+  @extend .response;
+  color: $error;
 }
 
 .mobile-footer-container {

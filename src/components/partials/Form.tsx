@@ -8,8 +8,15 @@ interface FormState {
   email: string;
 }
 
+interface FormResponse {
+  body: string;
+  status: "success" | "failure";
+}
+
 const Form = (): JSX.Element => {
   const [data, setData] = useState<FormState>({ name: "", email: "" });
+  const [response, setResponse] = useState<FormResponse>();
+
   const history: Array<string> = JSON.parse(
     localStorage.getItem("history") || "[]"
   );
@@ -35,9 +42,15 @@ const Form = (): JSX.Element => {
       setData({ name: "", email: "" });
       localStorage.setItem("history", JSON.stringify(history));
 
-      console.log("Form submitted successfully!");
+      setResponse({
+        body: "Your submission was successfully received!",
+        status: "success",
+      });
     } catch {
-      console.error("There was an error");
+      setResponse({
+        body: "An error occurred while submitting your request. Please feel free to contact us directly via email for assistance.",
+        status: "failure",
+      });
     }
   };
 
@@ -72,6 +85,10 @@ const Form = (): JSX.Element => {
           value={data.email}
         />
       </div>
+
+      {response && (
+        <p className={`response-${response.status}`}>{response.body}</p>
+      )}
 
       <button type="submit">Submit</button>
     </form>
