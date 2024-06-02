@@ -10,6 +10,9 @@ interface FormState {
 
 const Form = (): JSX.Element => {
   const [data, setData] = useState<FormState>({ name: "", email: "" });
+  const history: Array<string> = JSON.parse(
+    localStorage.getItem("history") || "[]"
+  );
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target as HTMLInputElement;
@@ -28,7 +31,9 @@ const Form = (): JSX.Element => {
         body: JSON.stringify({ ...data, domain: app.domain }),
       });
 
+      history.push(data.email);
       setData({ name: "", email: "" });
+      localStorage.setItem("history", JSON.stringify(history));
 
       console.log("Form submitted successfully!");
     } catch {
