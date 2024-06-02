@@ -3,7 +3,7 @@ import { useState } from "preact/hooks";
 import { ChangeEvent } from "preact/compat";
 import validationCheck from "@/helpers/validate";
 
-interface FormState {
+interface FormData {
   name: string;
   email: string;
 }
@@ -13,9 +13,12 @@ interface FormResponse {
   status: "success" | "failure";
 }
 
+type FormState = "loading" | "submitted" | "failed";
+
 const Form = (): JSX.Element => {
-  const [data, setData] = useState<FormState>({ name: "", email: "" });
+  const [data, setData] = useState<FormData>({ name: "", email: "" });
   const [response, setResponse] = useState<FormResponse>();
+  const [state, setState] = useState<FormState>();
 
   const history: Array<string> = JSON.parse(
     localStorage.getItem("history") || "[]"
@@ -29,7 +32,15 @@ const Form = (): JSX.Element => {
   const submit = async (e: SubmitEvent): Promise<void> => {
     e.preventDefault();
 
-    if (!validationCheck({ ...data })) return;
+    setState("loading");
+    if (!validationCheck({ ...data })) {
+      setResponse({
+        body: "An error occurred while submitting your request. Please feel free to contact us directly via email for assistance.",
+        status: "failure",
+      });
+      setState("failed");
+      return;
+    }
 
     try {
       await fetch(app.form_submit_api_url, {
@@ -46,11 +57,13 @@ const Form = (): JSX.Element => {
         body: "Your submission was successfully received!",
         status: "success",
       });
+      setState("submitted");
     } catch {
       setResponse({
         body: "An error occurred while submitting your request. Please feel free to contact us directly via email for assistance.",
         status: "failure",
       });
+      setState("failed");
     }
   };
 
@@ -90,7 +103,18 @@ const Form = (): JSX.Element => {
         <p className={`response-${response.status}`}>{response.body}</p>
       )}
 
-      <button type="submit">Submit</button>
+      <button
+        type="submit"
+        disabled={state === "loading" || state === "submitted"}
+      >
+        {state === "loading" && "Submitting..."}
+        {state === "submitted" && "Submitted..."}
+        {state === "failed" && "Submit Again"}
+        {state !== "loading" &&
+          state !== "submitted" &&
+          state !== "failed" &&
+          "Submit"}
+      </button>
     </form>
   );
 };
