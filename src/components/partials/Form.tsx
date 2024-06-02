@@ -15,13 +15,22 @@ const Form = (): JSX.Element => {
     setData({ ...data, [name]: value });
   };
 
-  const submit = (e: SubmitEvent): void => {
+  const submit = async (e: SubmitEvent): Promise<void> => {
     e.preventDefault();
 
     if (!data.name || !data.email) return;
 
-    // submit the form logic here.
-    console.table(data);
+    try {
+      await fetch(app.form_submit_api_url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, domain: app.domain }),
+      });
+
+      console.log("Form submitted successfully!");
+    } catch {
+      console.error("There was an error");
+    }
   };
 
   return (
