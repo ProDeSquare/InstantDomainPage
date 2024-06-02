@@ -1,6 +1,7 @@
 import app from "@/data/app";
 import { useState } from "preact/hooks";
 import { ChangeEvent } from "preact/compat";
+import validationCheck from "@/helpers/validate";
 
 interface FormState {
   name: string;
@@ -18,7 +19,7 @@ const Form = (): JSX.Element => {
   const submit = async (e: SubmitEvent): Promise<void> => {
     e.preventDefault();
 
-    if (!data.name || !data.email) return;
+    if (!validationCheck({ ...data })) return;
 
     try {
       await fetch(app.form_submit_api_url, {
@@ -47,7 +48,6 @@ const Form = (): JSX.Element => {
           placeholder={`e.g. ${app.seller_name}`}
           id="name"
           name="name"
-          required
           onChange={handleChange}
           value={data.name}
         />
@@ -63,7 +63,6 @@ const Form = (): JSX.Element => {
           }`}
           id="email"
           name="email"
-          required
           onChange={handleChange}
           value={data.email}
         />
