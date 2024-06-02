@@ -27,6 +27,8 @@ const Form = (): JSX.Element => {
         body: JSON.stringify({ ...data, domain: app.domain }),
       });
 
+      setData({ name: "", email: "" });
+
       console.log("Form submitted successfully!");
     } catch {
       console.error("There was an error");
