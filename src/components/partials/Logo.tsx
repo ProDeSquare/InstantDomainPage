@@ -1,5 +1,5 @@
 const Logo = (): JSX.Element => (
-  <a href="https://prodesquare.com">
+  <a href="/">
     <img src="/prodesquare-logo.svg" alt="Site Logo" />
   </a>
 );

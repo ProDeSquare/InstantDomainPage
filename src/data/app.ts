@@ -1,7 +1,10 @@
 const app = {
   domain: "prodesquare.com",
-  seller_email: "hamza@prodesquare.com",
-  seller_name: "Hamza Mughal",
+
+  seller: {
+    name: "Hamza Mughal",
+    email: "hamza@prodesquare.com",
+  },
 
   form: {
     api_url: "https://api.domain.com/submit-form",

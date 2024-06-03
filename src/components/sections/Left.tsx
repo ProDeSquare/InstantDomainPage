@@ -19,7 +19,7 @@ const Left = (): JSX.Element => (
           empire!
         </p>
 
-        <button onClick={() => window.open(`mailto:${app.seller_email}`)}>
+        <button onClick={() => window.open(`mailto:${app.seller.email}`)}>
           Contact Me
         </button>
       </div>

@@ -77,7 +77,7 @@ const Form = (): JSX.Element => {
 
         <input
           type="text"
-          placeholder={`e.g. ${app.seller_name}`}
+          placeholder={`e.g. ${app.seller.name}`}
           id="name"
           name="name"
           onChange={handleChange}
@@ -91,7 +91,7 @@ const Form = (): JSX.Element => {
 
         <input
           type="email"
-          placeholder={`e.g. ${app.seller_name.split(" ")[0].toLowerCase()}@${
+          placeholder={`e.g. ${app.seller.name.split(" ")[0].toLowerCase()}@${
             app.domain
           }`}
           id="email"
