@@ -2,7 +2,7 @@ $primary: rgb(96 10 255);
 $secondary: rgb(204 243 129);
 $white: rgb(255 255 255);
 $primary-light: rgb(120 118 254);
-$error: rgb(249 207 171);
+$error: rgb(255 226 226);
 
 * {
   margin: 0;
@@ -138,7 +138,20 @@ button {
 
 .response {
   margin-bottom: 0.5rem;
-  font-weight: bold;
+  background-color: $primary-light;
+  width: 75%;
+  padding: 0.7rem 0.7rem;
+
+  dt {
+    font-size: 1.3rem;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+
+    &::after {
+      content: ":";
+    }
+  }
 
   &:empty {
     margin: 0;
@@ -148,12 +161,20 @@ button {
 
 .response-success {
   @extend .response;
-  color: $secondary;
+  border: 2px solid $secondary;
+
+  dt {
+    color: $secondary;
+  }
 }
 
 .response-failure {
   @extend .response;
-  color: $error;
+  border: 2px solid $error;
+
+  dt {
+    color: $error;
+  }
 }
 
 .mobile-footer-container {
@@ -192,6 +213,10 @@ button {
   }
 
   form input {
+    width: 100%;
+  }
+
+  .response {
     width: 100%;
   }
 

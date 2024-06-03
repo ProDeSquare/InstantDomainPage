@@ -101,7 +101,10 @@ const Form = (): JSX.Element => {
       </div>
 
       {response && (
-        <p className={`response-${response.status}`}>{response.body}</p>
+        <dl className={`response-${response.status}`}>
+          <dt>{response.status}</dt>
+          <dd>{response.body}</dd>
+        </dl>
       )}
 
       <button
