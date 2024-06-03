@@ -35,7 +35,7 @@ const Form = (): JSX.Element => {
     setState("loading");
     if (!validationCheck({ ...data })) {
       setResponse({
-        body: "An error occurred while submitting your request. Please feel free to contact us directly via email for assistance.",
+        body: app.form.response.failure,
         status: "failure",
       });
       setState("failed");
@@ -43,8 +43,8 @@ const Form = (): JSX.Element => {
     }
 
     try {
-      await fetch(app.form_submit_api_url, {
-        method: "POST",
+      await fetch(app.form.api_url, {
+        method: app.form.method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...data, domain: app.domain }),
       });
@@ -54,13 +54,14 @@ const Form = (): JSX.Element => {
       localStorage.setItem("history", JSON.stringify(history));
 
       setResponse({
-        body: "Your submission was successfully received!",
+        body: app.form.response.success,
         status: "success",
       });
       setState("submitted");
-    } catch {
+    } catch (err) {
+      console.error(err);
       setResponse({
-        body: "An error occurred while submitting your request. Please feel free to contact us directly via email for assistance.",
+        body: app.form.response.failure,
         status: "failure",
       });
       setState("failed");
@@ -68,7 +69,7 @@ const Form = (): JSX.Element => {
   };
 
   return (
-    <form action={app.form_submit_api_url} method="POST" onSubmit={submit}>
+    <form action={app.form.api_url} method={app.form.method} onSubmit={submit}>
       <input type="hidden" value={app.domain} name="domain" />
 
       <div>
