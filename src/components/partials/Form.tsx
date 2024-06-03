@@ -82,6 +82,7 @@ const Form = (): JSX.Element => {
           name="name"
           onChange={handleChange}
           value={data.name}
+          required
         />
       </div>
 
@@ -97,6 +98,7 @@ const Form = (): JSX.Element => {
           name="email"
           onChange={handleChange}
           value={data.email}
+          required
         />
       </div>
 
