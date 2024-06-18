@@ -3,16 +3,19 @@ import { useState } from "preact/hooks";
 import { ChangeEvent } from "preact/compat";
 import validationCheck from "@/helpers/validate";
 
+// form fields data-types
 interface FormData {
   name: string;
   email: string;
 }
 
+// form response data-types
 interface FormResponse {
   body: string;
   status: "success" | "failure";
 }
 
+// all possible form states
 type FormState = "loading" | "submitted" | "failed";
 
 const Form = (): JSX.Element => {
@@ -20,19 +23,28 @@ const Form = (): JSX.Element => {
   const [response, setResponse] = useState<FormResponse>();
   const [state, setState] = useState<FormState>();
 
+  // getting the form submission history from the localstorage.
+  // Set it to an empty array if history is undefined.
   const history: Array<string> = JSON.parse(
     localStorage.getItem("history") || "[]"
   );
 
+  // Updating state as the input element is changed
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = e.target as HTMLInputElement;
     setData({ ...data, [name]: value });
   };
 
+  // submit function
   const submit = async (e: SubmitEvent): Promise<void> => {
+    // preventing the default behavior so that page doesn't refresh
     e.preventDefault();
 
+    // setting form state to loading
     setState("loading");
+
+    // validating data, if data is invalid,
+    // set form state to failed and return.
     if (!validationCheck({ ...data })) {
       setResponse({
         body: app.form.response.failure,
@@ -42,6 +54,7 @@ const Form = (): JSX.Element => {
       return;
     }
 
+    // Given data was valid, making a fetch request,
     try {
       await fetch(app.form.api_url, {
         method: app.form.method,
@@ -49,17 +62,22 @@ const Form = (): JSX.Element => {
         body: JSON.stringify({ ...data, domain: app.domain }),
       });
 
+      // storing user email in the localstorage
       history.push(data.email);
       setData({ name: "", email: "" });
       localStorage.setItem("history", JSON.stringify(history));
 
+      // setting a successful response
       setResponse({
         body: app.form.response.success,
         status: "success",
       });
       setState("submitted");
     } catch (err) {
+      // log the error to the console
       console.error(err);
+
+      // setting a failed response
       setResponse({
         body: app.form.response.failure,
         status: "failure",

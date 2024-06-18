@@ -1,3 +1,5 @@
+// Footer component: You're free to change the details in the footer
+
 const Footer = (): JSX.Element => (
   <footer>
     &copy; {new Date().getFullYear()}{" "}
