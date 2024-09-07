@@ -122,6 +122,9 @@ Alternatively, you can link directly to an external logo:
 #### Changing the styles
 All the styles are located in `src/assets/styles.scss` file.
 
+#### Changing footer text
+The **footer** component is located in `src/components/sections`, you're free to modify it according to your liking, and you're not required to credit anyone.
+
 ### Getting ready for production
 Once you're satisfied with your changes, build the project for production:
 ```shell
