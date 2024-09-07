@@ -129,8 +129,14 @@ $ pnpm run build
 
 This would compile everything into the `dist` directory which would be ready for deployment.
 
+## Additional Information
+
 ### License
 **Instant Domain Page** is licensed under **GNU General Public License v3.0**, check [LICENSE](./LICENSE) file for more info.
+
+### Donate
+- Bitcoin: `18Hd1waYh5uG6nWRboXGD3Q3vaPzWRMgQH`
+- Ethereum: `0x90b3f1495724e9e6a18372cb939df1d7166337b9`
 
 ### Contributors
 Coded with `<Love />` by **[Hamza The ProDeSquare Mughal](https://prodesquare.com)** on **VS Codium** using the **[Marine Dark](https://surl.prodesquare.com/l/marine-dark-marketplace)** theme.
