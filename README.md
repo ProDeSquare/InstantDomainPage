@@ -1,13 +1,14 @@
 # Instant Domain Page
 
-**Instant Domain Page** instantly generates "Domain For Sale" page with ease. Built with **Preact** and **TypeScript**, it lets you quickly set up and deploy a professional sale page for your domain.
+**Instant Domain Page** instantly generates "Domain For Sale" page with ease. Built with **Preact** and **TypeScript**, it lets you quickly set up and deploy a professional and responsive sale page for your domain.
 
 ![Screenshot](https://cdn.prodesquare.com/gh/img/instant-domain-page-desktop.webp)
 
 ## Setup Guide
 
 ### Prerequisites
-- **Node.js** along with **PNPM**
+- **Node.js**
+- **PNPM**
 
 Install the dependencies
 ```shell
@@ -19,7 +20,7 @@ And run the app in the development mode with
 $ pnpm run dev
 ```
 
-This will serve the app on localhost running on port `8080`, to change the port number, edit `vite.config.ts`
+The app will be served on `localhost` port `8080`. To change the port, modify the `vite.config.ts` file:
 ```js
 server: {
     ...
@@ -27,7 +28,7 @@ server: {
 }
 ```
 
-Now you can run the app in your browser on [127.0.0.1:8080](http://127.0.0.1:8080) *(replace 8080 with your port number)*
+Access the app in your browser via [127.0.0.1:8080](http://127.0.0.1:8080) *(replace 8080 with your port number)*
 
 ### Hacking
 You can start customizing the details in `src/data/app.ts`
@@ -62,17 +63,17 @@ Also, the default app title is `DOMAIN FOR SALE`, you can modify the `title` tag
 <title>xyz.tld is up for sale</title>
 ```
 
-Furthermore, form fields are validated before the form is submitted. Validations include:
-- Checks for empty fields
+Furthermore, the form fields are validated before submission. Key validations include:
+- Ensuring no fields are empty
 - Name is at least 3 characters long
-- Email is a valid email
-- Already submitted the form with the same email address (checks from local storage)
-- Email must not be from the same domain e.g. if `xyz.tld` is being sold, don't allow `abc@xyz.tld`
+- Valid email format
+- No repeat submissions from the same email (checks from local storage)
+- Email must not be from the domain being sold e.g. if `xyz.tld` is being sold, don't allow `abc@xyz.tld`
 
-This can be easily modified in `src/helpers/validate.ts`
+These can be easily modified in `src/helpers/validate.ts`
 ```typescript
 const validationCheck = (req: Record<string, string>): boolean => {
-  // comment out any validation you want to remove
+  // Disable specific validations by commenting them out
   if (requestHasEmptyFields(req)) return false;
   if (alreadyRequested(req.email)) return false;
   if (emailFromSameDomain(req.email)) return false;
@@ -82,7 +83,7 @@ const validationCheck = (req: Record<string, string>): boolean => {
 };
 ```
 
-You can also change the way validation works, e.g. currently it only validates if the name is at least 3 characters long, you can add a regex to further restrict what a user can enter.
+You can customize the validation logic; for example, the current setup only ensures the name is at least 3 characters long, but you can add a regex pattern to impose stricter input rules.
 ```typescript
 // src/helpers/validate.ts
 const requestHasInvalidData = (req: Record<string, string>): boolean => {
@@ -93,7 +94,7 @@ const requestHasInvalidData = (req: Record<string, string>): boolean => {
 };
 ```
 
-Change the above example to something like
+By changing the above function like this
 ```typescript
 const requestHasInvalidData = (req: Record<string, string>): boolean => {
   const emailRegex: RegExp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -107,12 +108,12 @@ const requestHasInvalidData = (req: Record<string, string>): boolean => {
 And you have better control what the name field accept.
 
 #### Changing the Logo
-App logo can be changed in `src/components/partials/Logo.tsx`. The default logo is stored in/as `public/prodesquare-logo.svg`. Copy your logo to the `public` directory and change the path in the `src/components/partials/Logo.tsx` component. E.g. your logo is titled `my-site-logo.png`, you'll then
+App logo can be changed in `src/components/partials/Logo.tsx`. The default logo is stored in/as `public/prodesquare-logo.svg`. Copy your logo to the `public` directory and change the path in the `src/components/partials/Logo.tsx` component. Let's say your logo is titled `my-site-logo.png`, you'll then
 ```html
 <img src="/my-site-logo.png" alt="Site Logo" />
 ```
 
-Instead of copying the logo to the `public` directory, you can instead add the link to it
+Alternatively, you can link directly to an external logo:
 ```html
 <!-- src/components/partials/Logo.tsx -->
 <img src="https://www.xyz.tld/img/my-site-logo.png" alt="Site Logo" />
@@ -122,12 +123,12 @@ Instead of copying the logo to the `public` directory, you can instead add the l
 All the styles are located in `src/assets/styles.scss` file.
 
 ### Getting ready for production
-Once you're happy with everything, you need to get it ready for deployment
+Once you're satisfied with your changes, build the project for production:
 ```shell
 $ pnpm run build
 ```
 
-This would compile everything into the `dist` directory which would be ready for deployment.
+The production-ready files will be generated in the `dist` directory.
 
 ## Additional Information
 
